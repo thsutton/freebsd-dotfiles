@@ -2,6 +2,13 @@
 
 set -eu
 
+if [ -d /usr/local/etc/X11/xinit/xinitrc.d ] ; then
+	for f in /usr/local/etc/X11/xinit/xinitrc.d/?*.sh ; do
+		[ -x "$f" ] && . "$f"
+	done
+	unset f
+fi
+
 # Disable bell
 xset -b
 
@@ -25,6 +32,7 @@ run() {
 	fi
 }
 
+run xscreensaver --no-splash &
 
 run srandrd "$HOME/.config/srandrd/script.sh"
 
