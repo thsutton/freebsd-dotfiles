@@ -10,10 +10,17 @@ Packages
 --------
 
 - u2f-devd
+- nvim
 - awesome
 - picom
-- musicpd
 - srandrd
-- nvim
 - firefox
+- dejavu - fonts
 
+Install
+-------
+
+```
+$ git clone git@github.com:thsutton/freebsd-dotfiles .config
+$ ln -s .config/xinitrc .xinitrc
+```

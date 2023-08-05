@@ -2,29 +2,34 @@
 
 set -eu
 
+# Disable bell
 xset -b
 
-[ -f ~/.config/Xresources ] && xrdb -merge ~/.config/Xresources
+system_xinit=/usr/local/etc/X11/xinit
 
-if [ -x "$(which srandrd)" ]; then
-    srandrd "$HOME/.config/srandrd/script.sh"
+if [ -x "$(which xrdb)" ]; then
+[ -r "$system_xinit/.Xresources" ] && xrdb -merge "$system_xinit/.Xresources"
+[ -r "$HOME/.config/Xresources" ] && xrdb -merge "$HOME/.config/Xresources"
 fi
 
-if [ -x /usr/local/bin/mozc -a -x /usr/local/bin/fcitx ]; then
-    GTK_IM_MODULE=fcitx
-    QT_IM_MODULE=xim
-    XMODIFIERS=@im=fcitx
-    export GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
-    # /usr/local/bin/mozc start
-    #/usr/local/bin/fcitx -r -d
+if [ -x "$(which xmodmap)" ]; then
+[ -r "$system_xinit/.Xmodmap" ] && xmodmap "$system_xinit/.Xmodmap"
+[ -r "$HOME/.config/Xmodmap" ] && xmodmap "$HOME/.config/Xmodmap"
 fi
 
-if [ -x "$(which musicpd)"]; then
-    MPD_HOST=$HOME/.mpd/socket
-    export MPD_HOST
-    musicpd
-fi
+run() {
+	if [ -x "$(which $1)" ]; then
+		$* &
+	else
+		echo "xinit: Not found: $1" > /dev/stderr
+	fi
+}
 
-[ -x "$(which picom)" ] && picom --vsync --backend glx --no-fading-openclose &
+
+run srandrd "$HOME/.config/srandrd/script.sh"
+
+run sctd --latitude -33.868820 --longitude 151.209290
+
+run picom --vsync --backend glx --no-fading-openclose
 
 exec awesome
