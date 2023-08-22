@@ -24,6 +24,13 @@ if [ -x "$(which xmodmap)" ]; then
 [ -r "$HOME/.config/Xmodmap" ] && xmodmap "$HOME/.config/Xmodmap"
 fi
 
+if [ -x "$(which fcitx5)" ]; then
+	export XMODIFIERS="@im=fcitx"
+	export GTK_IM_MODULE="fcitx/xim"
+	export QT_IM_MODULE="fcitx"
+	fcitx5 -d
+fi
+
 run() {
 	if [ -x "$(which $1)" ]; then
 		$* &
@@ -41,3 +48,4 @@ run sctd --latitude -33.868820 --longitude 151.209290
 run picom --vsync --backend glx --no-fading-openclose
 
 exec awesome
+
