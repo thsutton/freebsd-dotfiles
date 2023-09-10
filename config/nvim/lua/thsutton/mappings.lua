@@ -1,7 +1,13 @@
+local opts = { noremap = true, silent = true }
 
-local builtin = require('telescope.builtin')
+local telescope_builtin = require('telescope.builtin')
 
-vim.keymap.set('n', 'ff', builtin.find_files, {})
-vim.keymap.set('n', 'fg', builtin.live_grep, {})
-vim.keymap.set('n', 'fb', builtin.buffers, {})
-vim.keymap.set('n', 'fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, opts)
+vim.keymap.set('n', '<leader>fg', telescope_builtin.live_grep, opts)
+vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, opts)
+vim.keymap.set('n', '<leader>fh', telescope_builtin.help_tags, opts)
+
+vim.keymap.set('n', '<leader>xx', '<cmd>TroubleToggle<cr>', opts)
+
+local tree = require('nvim-tree')
+vim.keymap.set('n', '<leader>xt', function() tree.toggle(false, true) end, opts)
