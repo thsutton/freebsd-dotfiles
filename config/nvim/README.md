@@ -1,5 +1,4 @@
-Neovim Configuration
-====================
+README
+======
 
-This is my Neovim configuration.
-
+Configuration for neovim
