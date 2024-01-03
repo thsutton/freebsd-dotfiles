@@ -24,4 +24,5 @@ require("lazy").setup {
     require("main.plugins.tokyonight"),
     require("main.plugins.treesitter"),
     require("main.plugins.trouble"),
+    require("main.plugins.gnupg"),
 }
