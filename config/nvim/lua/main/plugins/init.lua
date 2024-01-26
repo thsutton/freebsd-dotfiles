@@ -15,8 +15,10 @@ require("lazy").setup {
     require("main.plugins.cmp"),
     require("main.plugins.devicons"),
     require("main.plugins.gitsigns"),
+    require("main.plugins.gnupg"),
     require("main.plugins.lsp-zero"),
     require("main.plugins.lualine"),
+    require("main.plugins.neogit"),
     require("main.plugins.oil"),
     require("main.plugins.smartcolumn"),
     require("main.plugins.telescope"),
@@ -24,5 +26,4 @@ require("lazy").setup {
     require("main.plugins.tokyonight"),
     require("main.plugins.treesitter"),
     require("main.plugins.trouble"),
-    require("main.plugins.gnupg"),
 }
