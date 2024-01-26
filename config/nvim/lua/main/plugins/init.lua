@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup {
     require("main.plugins.cmp"),
+    require("main.plugins.commentary"),
     require("main.plugins.devicons"),
     require("main.plugins.gitsigns"),
     require("main.plugins.gnupg"),
